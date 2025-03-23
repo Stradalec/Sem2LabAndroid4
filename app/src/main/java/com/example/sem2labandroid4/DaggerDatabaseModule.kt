@@ -1,12 +1,14 @@
 package com.example.sem2labandroid4
 
 
+import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import dagger.Component
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.android.HiltAndroidApp
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Singleton
 
@@ -23,4 +25,5 @@ class  NoteDatabaseModule {
     }
 
 }
-
+@HiltAndroidApp
+class NoteApplication : Application()

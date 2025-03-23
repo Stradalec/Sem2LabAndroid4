@@ -8,7 +8,7 @@ import androidx.room.Query
 @Dao
 interface NoteDAO {
     @Insert
-    fun insertAll(vararg: Note)
+    fun insertAll(vararg notes: Note)
 
     @Delete
     fun  delete(note: Note)
