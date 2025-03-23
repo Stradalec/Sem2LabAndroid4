@@ -36,7 +36,10 @@ android {
 }
 
 dependencies {
-
+    implementation ("androidx.room:room-runtime:2.6.1")
+    annotationProcessor("androidx.room:room-compiler:2.6.1")
+    implementation("com.google.dagger:dagger:2.14.1")
+    annotationProcessor("com.google.dagger:dagger-compiler:2.14.1")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
