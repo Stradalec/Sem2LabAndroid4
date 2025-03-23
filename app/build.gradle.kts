@@ -36,6 +36,8 @@ android {
 }
 
 dependencies {
+    implementation ("com.google.dagger:hilt-android:2.44")
+    implementation ("com.google.dagger:hilt-compiler:2.44")
     implementation ("androidx.room:room-runtime:2.6.1")
     annotationProcessor("androidx.room:room-compiler:2.6.1")
     implementation("com.google.dagger:dagger:2.14.1")
