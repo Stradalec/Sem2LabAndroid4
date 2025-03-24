@@ -8,11 +8,14 @@ import androidx.room.RoomDatabase
 import dagger.Component
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
 import dagger.hilt.android.HiltAndroidApp
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
+@InstallIn(SingletonComponent::class)
 class  NoteDatabaseModule {
     @Provides
     @Singleton
@@ -23,7 +26,11 @@ class  NoteDatabaseModule {
     fun provideNoteDao(database: NoteDatabase) : NoteDAO {
         return database.noteDao()
     }
-
+    @Provides
+    @Singleton
+    fun provideNoteRepository(noteDao: NoteDAO): NoteRepository {
+        return NoteRepository(noteDao)
+    }
 }
 @HiltAndroidApp
 class NoteApplication : Application()

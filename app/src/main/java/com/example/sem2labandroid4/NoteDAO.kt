@@ -3,16 +3,18 @@ package com.example.sem2labandroid4
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
 interface NoteDAO {
-    @Insert
-    fun insertAll(vararg notes: Note)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertAll(vararg notes: Note)
 
     @Delete
-    fun  delete(note: Note)
+    suspend fun  delete(note: Note)
 
     @Query("SELECT * FROM note")
-    fun getAll(): List<Note>
+    suspend fun getAll(): List<Note>
 }
