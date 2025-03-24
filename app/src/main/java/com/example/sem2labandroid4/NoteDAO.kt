@@ -10,7 +10,8 @@ import androidx.room.Query
 interface NoteDAO {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertAll(vararg notes: Note)
+    suspend fun insertAll(vararg notes: Note) : List<Long>
+
 
     @Delete
     suspend fun  delete(note: Note)

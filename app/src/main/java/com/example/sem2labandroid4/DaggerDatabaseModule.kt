@@ -20,7 +20,7 @@ class  NoteDatabaseModule {
     @Provides
     @Singleton
     fun provideNoteDatabase(@ApplicationContext context: Context) : NoteDatabase {
-        return  Room.databaseBuilder(context,NoteDatabase::class.java, "note_database").build()
+        return  Room.databaseBuilder(context,NoteDatabase::class.java, "note_database").fallbackToDestructiveMigration().build()
     }
     @Provides
     fun provideNoteDao(database: NoteDatabase) : NoteDAO {

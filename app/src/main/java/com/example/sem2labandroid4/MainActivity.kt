@@ -1,6 +1,9 @@
 package com.example.sem2labandroid4
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         initialiseRecyclerView()
         observeNotesList()
         getNotes()
+        setupAddNoteButton()
     }
     private fun initialiseRecyclerView() {
         val recyclerView: RecyclerView = findViewById(R.id.rView)
@@ -38,5 +42,22 @@ class MainActivity : AppCompatActivity() {
 
     private fun getNotes() {
         viewModel.loadNotes()
+    }
+    private fun setupAddNoteButton() {
+        findViewById<Button>(R.id.btnGetNotes).setOnClickListener {
+            val title = findViewById<EditText>(R.id.titleEditText).text.toString()
+            val content = findViewById<EditText>(R.id.contentEditText).text.toString()
+            if (title.isNotBlank() && content.isNotBlank()) {
+                viewModel.addNote(Note(title = title, noteBody = content))
+                clearInputFields()
+            } else {
+                Toast.makeText(this, "Пожалуйста, заполните все поля", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun clearInputFields() {
+        findViewById<EditText>(R.id.titleEditText).text.clear()
+        findViewById<EditText>(R.id.contentEditText).text.clear()
     }
 }

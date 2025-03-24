@@ -17,7 +17,7 @@ class NoteRepository @Inject constructor(private val noteDAO: NoteDAO) {
         noteDAO.insertAll(note)
     }
 
-    suspend fun deleteNote(note: Note) = withContext(Dispatchers.IO) {
+    suspend fun deleteNote(note: Note) = withContext(Dispatchers.IO)  {
         noteDAO.delete(note)
     }
 }
