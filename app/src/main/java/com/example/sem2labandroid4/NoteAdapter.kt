@@ -3,15 +3,17 @@ package com.example.sem2labandroid4
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class NoteAdapter(private var notes: List<Note> = emptyList()) :
+class NoteAdapter(private var notes: List<Note> = emptyList(),  private val onDeleteClick: (Note) -> Unit) :
     RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
     class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.noteTitleTextView)
         val bodyTextView: TextView = itemView.findViewById(R.id.noteBodyTextView)
+        val deleteButton: ImageButton = itemView.findViewById(R.id.deleteButton)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
@@ -24,6 +26,7 @@ class NoteAdapter(private var notes: List<Note> = emptyList()) :
         val note = notes[position]
         holder.titleTextView.text = note.title
         holder.bodyTextView.text = note.noteBody
+        holder.deleteButton.setOnClickListener { onDeleteClick(note) }
     }
     fun updateNotes(newNotes: List<Note>) {
         notes = newNotes

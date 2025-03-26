@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val viewModel: NoteViewModel by viewModels()
-    private var adapter: NoteAdapter = NoteAdapter()
+    private lateinit var adapter: NoteAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -28,6 +28,9 @@ class MainActivity : AppCompatActivity() {
     }
     private fun initialiseRecyclerView() {
         val recyclerView: RecyclerView = findViewById(R.id.rView)
+        adapter = NoteAdapter(onDeleteClick = { note ->
+            viewModel.deleteNote(note)
+        })
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
