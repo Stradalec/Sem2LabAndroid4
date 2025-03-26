@@ -38,8 +38,8 @@
             android:id="@+id/deleteButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@android:drawable/ic_menu_delete"
-            android:contentDescription="Delete note" />
+            android:contentDescription="Delete note"
+            android:src="@android:drawable/ic_menu_delete" />
 
     </LinearLayout>
 

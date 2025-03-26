@@ -7,7 +7,10 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class NoteAdapter(private var notes: List<Note> = emptyList(),  private val onDeleteClick: (Note) -> Unit) :
+class NoteAdapter(
+    private var notes: List<Note> = emptyList(),
+    private val onDeleteClick: (Note) -> Unit
+) :
     RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
     class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -28,9 +31,11 @@ class NoteAdapter(private var notes: List<Note> = emptyList(),  private val onDe
         holder.bodyTextView.text = note.noteBody
         holder.deleteButton.setOnClickListener { onDeleteClick(note) }
     }
+
     fun updateNotes(newNotes: List<Note>) {
         notes = newNotes
         notifyDataSetChanged()
     }
+
     override fun getItemCount() = notes.size
 }

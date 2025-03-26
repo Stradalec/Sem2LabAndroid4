@@ -4,8 +4,6 @@ package com.example.sem2labandroid4
 import android.app.Application
 import android.content.Context
 import androidx.room.Room
-import androidx.room.RoomDatabase
-import dagger.Component
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,21 +14,25 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class  NoteDatabaseModule {
+class NoteDatabaseModule {
     @Provides
     @Singleton
-    fun provideNoteDatabase(@ApplicationContext context: Context) : NoteDatabase {
-        return  Room.databaseBuilder(context,NoteDatabase::class.java, "note_database").fallbackToDestructiveMigration().build()
+    fun provideNoteDatabase(@ApplicationContext context: Context): NoteDatabase {
+        return Room.databaseBuilder(context, NoteDatabase::class.java, "note_database")
+            .fallbackToDestructiveMigration().build()
     }
+
     @Provides
-    fun provideNoteDao(database: NoteDatabase) : NoteDAO {
+    fun provideNoteDao(database: NoteDatabase): NoteDAO {
         return database.noteDao()
     }
+
     @Provides
     @Singleton
     fun provideNoteRepository(noteDao: NoteDAO): NoteRepository {
         return NoteRepository(noteDao)
     }
 }
+
 @HiltAndroidApp
 class NoteApplication : Application()

@@ -12,14 +12,16 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NoteViewModel @Inject constructor(private val repository: NoteRepository) : ViewModel() {
-    private  val _notes = MutableLiveData<List<Note>>()
+    private val _notes = MutableLiveData<List<Note>>()
     val notes: LiveData<List<Note>> = _notes
+
     init {
         viewModelScope.launch {
             addDefaultNoteIfNeeded()
             loadNotes()
         }
     }
+
     private suspend fun addDefaultNoteIfNeeded() {
         withContext(Dispatchers.IO) {
             val allNotes = repository.getAllNotes()
@@ -28,7 +30,8 @@ class NoteViewModel @Inject constructor(private val repository: NoteRepository) 
             }
         }
     }
-    fun loadNotes(){
+
+    fun loadNotes() {
         viewModelScope.launch {
             try {
                 _notes.value = repository.getAllNotes()
@@ -38,6 +41,7 @@ class NoteViewModel @Inject constructor(private val repository: NoteRepository) 
             }
         }
     }
+
     fun addNote(note: Note) {
         viewModelScope.launch {
             repository.insetNote(note)
@@ -45,7 +49,7 @@ class NoteViewModel @Inject constructor(private val repository: NoteRepository) 
         }
     }
 
-    fun deleteNote(note: Note){
+    fun deleteNote(note: Note) {
         viewModelScope.launch {
             repository.deleteNote(note)
             loadNotes()

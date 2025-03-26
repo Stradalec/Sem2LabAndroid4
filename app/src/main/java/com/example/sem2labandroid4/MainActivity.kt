@@ -4,11 +4,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         getNotes()
         setupAddNoteButton()
     }
+
     private fun initialiseRecyclerView() {
         val recyclerView: RecyclerView = findViewById(R.id.rView)
         adapter = NoteAdapter(onDeleteClick = { note ->
@@ -46,6 +44,7 @@ class MainActivity : AppCompatActivity() {
     private fun getNotes() {
         viewModel.loadNotes()
     }
+
     private fun setupAddNoteButton() {
         findViewById<Button>(R.id.btnGetNotes).setOnClickListener {
             val title = findViewById<EditText>(R.id.titleEditText).text.toString()
