@@ -7,6 +7,7 @@ import androidx.room.Room
 import com.example.sem2labandroid4.data.local.NoteDAO
 import com.example.sem2labandroid4.data.local.NoteDatabase
 import com.example.sem2labandroid4.data.repo.NoteRepository
+import com.example.sem2labandroid4.domain.INoteRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,6 +37,14 @@ class NoteDatabaseModule {
         return NoteRepository(noteDao)
     }
 }
-
+@Module
+@InstallIn(SingletonComponent::class)
+object RepositoryModule {
+    @Provides
+    @Singleton
+    fun provideNoteRepository(noteDAO: NoteDAO): INoteRepository {
+        return NoteRepository(noteDAO)
+    }
+}
 @HiltAndroidApp
 class NoteApplication : Application()
