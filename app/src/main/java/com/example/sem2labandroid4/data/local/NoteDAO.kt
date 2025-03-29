@@ -1,10 +1,11 @@
-package com.example.sem2labandroid4
+package com.example.sem2labandroid4.data.local
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.sem2labandroid4.data.local.Note
 
 @Dao
 interface NoteDAO {

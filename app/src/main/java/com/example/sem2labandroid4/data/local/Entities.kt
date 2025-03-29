@@ -1,4 +1,4 @@
-package com.example.sem2labandroid4
+package com.example.sem2labandroid4.data.local
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

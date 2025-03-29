@@ -1,4 +1,4 @@
-package com.example.sem2labandroid4
+package com.example.sem2labandroid4.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sem2labandroid4.R
+import com.example.sem2labandroid4.data.local.Note
 
 class NoteAdapter(
     private var notes: List<Note> = emptyList(),

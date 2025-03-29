@@ -1,5 +1,7 @@
-package com.example.sem2labandroid4
+package com.example.sem2labandroid4.data.repo
 
+import com.example.sem2labandroid4.data.local.Note
+import com.example.sem2labandroid4.data.local.NoteDAO
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

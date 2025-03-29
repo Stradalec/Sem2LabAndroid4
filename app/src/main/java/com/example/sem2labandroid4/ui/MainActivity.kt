@@ -1,4 +1,4 @@
-package com.example.sem2labandroid4
+package com.example.sem2labandroid4.ui
 
 import android.os.Bundle
 import android.widget.Button
@@ -8,6 +8,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sem2labandroid4.data.local.Note
+import com.example.sem2labandroid4.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

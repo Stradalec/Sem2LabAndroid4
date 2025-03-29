@@ -1,9 +1,12 @@
-package com.example.sem2labandroid4
+package com.example.sem2labandroid4.di
 
 
 import android.app.Application
 import android.content.Context
 import androidx.room.Room
+import com.example.sem2labandroid4.data.local.NoteDAO
+import com.example.sem2labandroid4.data.local.NoteDatabase
+import com.example.sem2labandroid4.data.repo.NoteRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
