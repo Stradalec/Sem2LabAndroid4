@@ -7,7 +7,7 @@ import com.example.sem2labandroid4.domain.model.NoteModel
 fun Note.toDomain(): NoteModel {
     return NoteModel(
         id = this.id,
-        title = this.title ?: "Без названия", // Обработка null для title
+        title = this.title ?: "Без названия",
         noteBody = this.noteBody
     )
 }

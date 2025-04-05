@@ -13,8 +13,7 @@ import com.example.sem2labandroid4.domain.model.NoteModel
 class NoteAdapter(
     private var notes: List<NoteModel> = emptyList(),
     private val onDeleteClick: (NoteModel) -> Unit
-) :
-    RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
+) : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
     class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.noteTitleTextView)

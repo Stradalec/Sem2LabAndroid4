@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sem2labandroid4.domain.INoteRepository
-import com.example.sem2labandroid4.domain.model.ModelRepository
 import com.example.sem2labandroid4.domain.model.NoteModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -14,12 +13,12 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class NoteViewModel @Inject constructor(private val repository: ModelRepository) : ViewModel() {
+class NoteViewModel @Inject constructor(private val repository: INoteRepository) : ViewModel() {
     private val _notes = MutableLiveData<List<NoteModel>>()
     val notes: LiveData<List<NoteModel>> = _notes
 
     init {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             addDefaultNoteIfNeeded()
             loadNotes()
         }
@@ -35,25 +34,25 @@ class NoteViewModel @Inject constructor(private val repository: ModelRepository)
     }
 
     fun loadNotes() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             try {
-                _notes.value = repository.getAllNotes()
+                _notes.postValue(repository.getAllNotes())
             } catch (e: Exception) {
 
-                _notes.value = null
+                _notes.postValue( null)
             }
         }
     }
 
     fun addNote(note: NoteModel) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.insetNote(note)
             loadNotes()
         }
     }
 
     fun deleteNote(note: NoteModel) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.deleteNote(note)
             loadNotes()
         }
