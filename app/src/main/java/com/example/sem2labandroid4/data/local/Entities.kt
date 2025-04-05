@@ -10,3 +10,4 @@ data class Note(
     @ColumnInfo(name = "title") val title: String?,
     @ColumnInfo(name = "body") val noteBody: String
 )
+

@@ -8,8 +8,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sem2labandroid4.data.local.Note
 import com.example.sem2labandroid4.R
+import com.example.sem2labandroid4.domain.model.NoteModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,8 +28,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initialiseRecyclerView() {
         val recyclerView: RecyclerView = findViewById(R.id.rView)
-        adapter = NoteAdapter(onDeleteClick = { note ->
-            viewModel.deleteNote(note)
+        adapter = NoteAdapter(onDeleteClick = { noteModel: NoteModel ->
+            viewModel.deleteNote(noteModel)
         })
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             val title = findViewById<EditText>(R.id.titleEditText).text.toString()
             val content = findViewById<EditText>(R.id.contentEditText).text.toString()
             if (title.isNotBlank() && content.isNotBlank()) {
-                viewModel.addNote(Note(title = title, noteBody = content))
+                viewModel.addNote(NoteModel(title = title, noteBody = content))
                 clearInputFields()
             } else {
                 Toast.makeText(this, "Пожалуйста, заполните все поля", Toast.LENGTH_SHORT).show()

@@ -7,11 +7,12 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sem2labandroid4.R
-import com.example.sem2labandroid4.data.local.Note
+import com.example.sem2labandroid4.domain.model.NoteModel
+
 
 class NoteAdapter(
-    private var notes: List<Note> = emptyList(),
-    private val onDeleteClick: (Note) -> Unit
+    private var notes: List<NoteModel> = emptyList(),
+    private val onDeleteClick: (NoteModel) -> Unit
 ) :
     RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
@@ -34,7 +35,7 @@ class NoteAdapter(
         holder.deleteButton.setOnClickListener { onDeleteClick(note) }
     }
 
-    fun updateNotes(newNotes: List<Note>) {
+    fun updateNotes(newNotes: List<NoteModel>) {
         notes = newNotes
         notifyDataSetChanged()
     }
